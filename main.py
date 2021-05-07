@@ -32,7 +32,8 @@ import feedparse  # r
 import requests
 from envparse import env
 from plyer import notification
-app_name = "tw_snotifier" # Change the app name here
+
+app_name = "tw_snotifier"  # Change the app name here
 icon1 = "/usr/share/pixmaps/distribution-logos/square-hicolor.svg"  # Change icon here
 path1 = "/usr/share/pixmaps/distribution-logos/"  # And here
 
@@ -40,7 +41,9 @@ path1 = "/usr/share/pixmaps/distribution-logos/"  # And here
 Check for the tumbleweed logo in the default icon location
 If not present, downloads it to user store (~/.icons or ~/.local/share/icons) from Commons
 """
-if os.path.exists(path1) and os.path.isfile(icon1):  # Be sure to check the variables otherwise the TW icon will be used
+if os.path.exists(path1) and os.path.isfile(
+    icon1
+):  # Be sure to check the variables otherwise the TW icon will be used
     app_icon = icon1
 else:
     iname = "tw.svg"
@@ -67,7 +70,7 @@ def getsnapshot():
     """
     releasefile = "/usr/lib/os-release"
     env.read_envfile(releasefile)
-    version = env.str('VERSION_ID').lower().rstrip()
+    version = env.str("VERSION_ID").lower().rstrip()
     if len(version) == 0:
         raise EnvironmentError("Check /usr/lib/os-release")
     else:
@@ -84,11 +87,10 @@ def rssparse(vid: str):
     with requests.get("https://get.opensuse.org/api/v0/distributions.json") as r:
         if r.status_code == 200:
             feed = r.json()
-            feed = feed['Tumbleweed'][0]['version']
+            feed = feed["Tumbleweed"][0]["version"]
         else:
             print("Falling back to RSS feed")
-            dl = feedparser.parse(
-                'https://review.tumbleweed.boombatower.com/feed.xml')
+            dl = feedparser.parse("https://review.tumbleweed.boombatower.com/feed.xml")
             feed = str(dl.entries[0].title)
         returncode = rssprocess(feed, vid)
         return str(returncode)
@@ -123,8 +125,7 @@ def title(rc: str, c: str):
         titler = "No Updates Available"
         timeoutr = 600  # Timeout (in seconds) here (no updates)
     else:
-        titler = "Snapshot " + str(rc) + " available" + \
-            ", " + "running " + str(c)
+        titler = "Snapshot " + str(rc) + " available" + ", " + "running " + str(c)
         timeoutr = 3600  # Timeout (in seconds) here (updates available)
 
     return titler, timeoutr
@@ -138,11 +139,16 @@ def notif(array):
     """
     titled = str(array[0])
     timeoutd = int(array[1])
-    notification.notify(title=titled, app_name=app_name, app_icon=app_icon, timeout=timeoutd,
-                        toast=False)
+    notification.notify(
+        title=titled,
+        app_name=app_name,
+        app_icon=app_icon,
+        timeout=timeoutd,
+        toast=False,
+    )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     r_vid = getsnapshot()
     rrc = rssparse(r_vid)
     notifr = list(title(rrc, r_vid))
