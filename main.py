@@ -83,10 +83,17 @@ def rssparse(vid: str):
     :param str vid: Actual running snapshot
     :return str returncode: 0 if no new version is found or the new version number
     """
-    dl = feedparser.parse('https://review.tumbleweed.boombatower.com/feed.xml')
-    feed = str(dl.entries[0].title)
-    returncode = rssprocess(feed, vid)
-    return str(returncode)
+
+    with requests.get("https://get.opensuse.org/api/v0/distributions.json") as r:
+        if r.status_code == 200:
+            feed = r.json()
+            feed = feed['Tumbleweed'][0]['version']
+        else:
+            print("Falling back to RSS feed")
+            dl = feedparser.parse('https://review.tumbleweed.boombatower.com/feed.xml')
+            feed = str(dl.entries[0].title)
+        returncode = rssprocess(feed, vid)
+        return str(returncode)
 
 
 def rssprocess(fed: str, version: str):
