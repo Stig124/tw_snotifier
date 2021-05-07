@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 """
 
 TW-S(napshot)notifier
@@ -20,13 +19,10 @@ TW-S(napshot)notifier
 
 
 """
-
 """
 The RSS feed used is licensed under GPL2.0 to boombatower (https://github.com/boombatower/tumbleweed-review)
 This only has utility in openSUSE Tumbleweed
 """
-
-
 import os
 
 import feedparse  # r
