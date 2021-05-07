@@ -28,6 +28,7 @@ This only has utility in openSUSE Tumbleweed
 
 
 import os
+
 import feedparse  # r
 import requests
 from envparse import env
