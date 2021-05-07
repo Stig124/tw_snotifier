@@ -33,13 +33,12 @@ from plyer import notification
 app_name = "tw_snotifier"  # Change the app name here
 icon1 = "/usr/share/pixmaps/distribution-logos/square-hicolor.svg"  # Change icon here
 path1 = "/usr/share/pixmaps/distribution-logos/"  # And here
-
 """
 Check for the tumbleweed logo in the default icon location
 If not present, downloads it to user store (~/.icons or ~/.local/share/icons) from Commons
 """
 if os.path.exists(path1) and os.path.isfile(
-    icon1
+        icon1
 ):  # Be sure to check the variables otherwise the TW icon will be used
     app_icon = icon1
 else:
@@ -81,13 +80,15 @@ def rssparse(vid: str):
     :return str returncode: 0 if no new version is found or the new version number
     """
 
-    with requests.get("https://get.opensuse.org/api/v0/distributions.json") as r:
+    with requests.get(
+            "https://get.opensuse.org/api/v0/distributions.json") as r:
         if r.status_code == 200:
             feed = r.json()
             feed = feed["Tumbleweed"][0]["version"]
         else:
             print("Falling back to RSS feed")
-            dl = feedparser.parse("https://review.tumbleweed.boombatower.com/feed.xml")
+            dl = feedparser.parse(
+                "https://review.tumbleweed.boombatower.com/feed.xml")
             feed = str(dl.entries[0].title)
         returncode = rssprocess(feed, vid)
         return str(returncode)
@@ -122,7 +123,8 @@ def title(rc: str, c: str):
         titler = "No Updates Available"
         timeoutr = 600  # Timeout (in seconds) here (no updates)
     else:
-        titler = "Snapshot " + str(rc) + " available" + ", " + "running " + str(c)
+        titler = "Snapshot " + str(
+            rc) + " available" + ", " + "running " + str(c)
         timeoutr = 3600  # Timeout (in seconds) here (updates available)
 
     return titler, timeoutr
