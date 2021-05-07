@@ -1,5 +1,13 @@
 #!/usr/bin/env python3
 
+import os
+
+import feedparser
+import requests
+from envparse import env
+from plyer import notification
+
+
 """
 
 TW-S(napshot)notifier
@@ -27,23 +35,15 @@ This only has utility in openSUSE Tumbleweed
 """
 
 
-import os
-
-import feedparser
-import requests
-from envparse import env
-from plyer import notification
-
-
-app_name = "tw_snotifier" # Change the app name here
-icon1 = "/usr/share/pixmaps/distribution-logos/square-hicolor.svg" # Change icon here
-path1 = "/usr/share/pixmaps/distribution-logos/" # And here
+app_name = "tw_snotifier"  # Change the app name here
+icon1 = "/usr/share/pixmaps/distribution-logos/square-hicolor.svg"  # Change icon here
+path1 = "/usr/share/pixmaps/distribution-logos/"  # And here
 
 """
 Check for the tumbleweed logo in the default icon location
 If not present, downloads it to user store (~/.icons or ~/.local/share/icons) from Commons
 """
-if os.path.exists(path1) and os.path.isfile(icon1): # Be sure to check the variables otherwise the TW icon will be used
+if os.path.exists(path1) and os.path.isfile(icon1):  # Be sure to check the variables otherwise the TW icon will be used
     app_icon = icon1
 else:
     iname = "tw.svg"
@@ -114,11 +114,12 @@ def title(rc: str, c: str):
     :return str: Notification parameters
     """
     if rc == "0":
-        titler = "No Updates Available" # Notification title here (no updates available) and line 120 (updates available)
-        timeoutr = 600 # Timeout (in seconds) here (no updates)
+        # Notification title here (no updates available) and line 120 (updates available)
+        titler = "No Updates Available"
+        timeoutr = 600  # Timeout (in seconds) here (no updates)
     else:
         titler = "Snapshot " + str(rc) + " available" + ", " + "running " + str(c)
-        timeoutr = 3600 #Timeout (in seconds) here (updates available)
+        timeoutr = 3600  # Timeout (in seconds) here (updates available)
 
     return titler, timeoutr
 
