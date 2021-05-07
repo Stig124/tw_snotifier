@@ -23,7 +23,7 @@ TW-S(napshot)notifier
 
 """
 The RSS feed used is licensed under GPL2.0 to boombatower (https://github.com/boombatower/tumbleweed-review)
-This only has utility in OpenSUSE Tumbleweed
+This only has utility in openSUSE Tumbleweed
 """
 
 
