@@ -9,16 +9,17 @@
 
 ## About <a name = "about"></a>
 
-Following the openSUSE Tumbleweed update rate can be difficult, this solves this issue by sending a notification if a new update is available
+Following the openSUSE Tumbleweed update rate can be difficult, this solves this
+issue by sending a notification if a new update is available
 
-###### NOTE : The RSS feed, used as a fallback in case get.opensuse.org is down, is only actualised at 00:00+0000 (UTC) ([Check in your timezone](https://worldti.me/1006O)) every day, if there is a snapshot in the middle of the day, the script *(if in fallback)* will not pick it up before midnight UTC
+###### NOTE : The RSS feed, used as a fallback in case get.opensuse.org is down, is only actualised at 00:00+0000 (UTC) ([Check in your timezone](https://worldti.me/1006O)) every day, if there is a snapshot in the middle of the day, the script _(if in fallback)_ will not pick it up before midnight UTC
 
 ## Getting Started <a name = "getting_started"></a>
 
-
 ### Prerequisites
 
-You must run `openSUSE Tumbleweed` and have `python3`, `pip3` and `python-dbus` installed
+You must run `openSUSE Tumbleweed` and have `python3`, `pip3` and `python-dbus`
+installed
 
 To install this, you can use OpenSUSE Zypper patterns :
 
@@ -32,7 +33,6 @@ Install `pipenv`
 ```bash
 pip3 install --user pipenv
 ```
-
 
 ### Installing
 
@@ -67,7 +67,6 @@ And simply run the wrapper script
 
 ## Usage <a name = "usage"></a>
 
-
 You can add it to your `crontab` for periodic launch
 
 `crontab -e`
@@ -84,21 +83,22 @@ or hourly at minute 0 :
 0 * * * * /dir/launch.sh # Same here
 ```
 
-You can modifiy the notification timeout *(must stay in seconds)* in the main.py file, lines :
+You can modifiy the notification timeout _(must stay in seconds)_ in the main.py
+file, lines :
 
-
-- `118` : for the no update available timeout *(default : 10min (600s))*
-- `121` : When update is available *(default : 1h (3600s))*
+- `118` : for the no update available timeout _(default : 10min (600s))_
+- `121` : When update is available _(default : 1h (3600s))_
 
 And
 
 - the icon by changing accordingly the :
 
-1. `path1` *(complete path to the folder where the icon is located)* and 
-2. `icon1` *(which is path + icon name)*
+1. `path1` _(complete path to the folder where the icon is located)_ and
+2. `icon1` _(which is path + icon name)_
 
 - the app name using `app_name` variable
-- the notifications titles, using both `titler` variables in lines `117` and `120`
+- the notifications titles, using both `titler` variables in lines `117` and
+  `120`
 
 ## LICENSE
 
