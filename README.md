@@ -11,7 +11,7 @@
 
 Following the openSUSE Tumbleweed update rate can be difficult, this solves this issue by sending a notification if a new update is available
 
-#### NOTE : The RSS feed used is only actualised at 00:00+0000 (UTC) ([Check in your timezone](https://worldti.me/1006O)) every day, if there is a snapshot in the middle of the day, the script will not pick it up before midnight UTC
+###### NOTE : The RSS feed, used as a fallback in case get.opensuse.org is down, is only actualised at 00:00+0000 (UTC) ([Check in your timezone](https://worldti.me/1006O)) every day, if there is a snapshot in the middle of the day, the script *(if in fallback)* will not pick it up before midnight UTC
 
 ## Getting Started <a name = "getting_started"></a>
 
@@ -78,12 +78,10 @@ Every boot :
 @reboot /dir/launch.sh # Replace /dir/ by the script directory
 ```
 
-or at midnight UTC ([Check in your timezone](https://worldti.me/1006O)) :
-
-For exemple in UTC+1 with DST : *(the number to change is the one before the asterixs in 24h form)*
+or hourly at minute 0 :
 
 ```
-0 2 * * * /dir/launch.sh # Same here
+0 * * * * /dir/launch.sh # Same here
 ```
 
 You can modifiy the notification timeout *(must stay in seconds)* in the main.py file, lines :
@@ -94,7 +92,11 @@ You can modifiy the notification timeout *(must stay in seconds)* in the main.py
 
 And
 
-- the icon by changing accordingly the `path1` *(complete path to the folder where the icon is located)* and `icon1` *(which is path + icon name)*
+- the icon by changing accordingly the :
+
+1. `path1` *(complete path to the folder where the icon is located)* and 
+2. `icon1` *(which is path + icon name)*
+
 - the app name using `app_name` variable
 - the notifications titles, using both `titler` variables in lines `117` and `120`
 
