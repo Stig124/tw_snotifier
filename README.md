@@ -9,7 +9,7 @@
 
 ## About <a name = "about"></a>
 
-Following the OpenSUSE Tumbleweed update rate can be difficult, this solves this issue by sending a notification if a new update is available
+Following the openSUSE Tumbleweed update rate can be difficult, this solves this issue by sending a notification if a new update is available
 
 #### NOTE : The RSS feed used is only actualised at 00:00+0000 (UTC) ([Check in your timezone](https://worldti.me/1006O)) every day, if there is a snapshot in the middle of the day, the script will not pick it up before midnight UTC
 
@@ -18,7 +18,7 @@ Following the OpenSUSE Tumbleweed update rate can be difficult, this solves this
 
 ### Prerequisites
 
-You must run `OpenSUSE Tumbleweed` and have `python3`, `pip3` and `python-dbus` installed
+You must run `openSUSE Tumbleweed` and have `python3`, `pip3` and `python-dbus` installed
 
 To install this, you can use OpenSUSE Zypper patterns :
 
